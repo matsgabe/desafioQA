@@ -1,0 +1,30 @@
+Cenário 1 - Compra com cartão de crédito válido
+Descrição: O usuário adiciona produtos ao carrinho e realiza uma compra com um cartão de crédito válido e saldo suficiente.
+Teste positivo - adicionar o produto no carrinho, finalizar a compra com um cartão válido e verificar se o pagamento foi processado. Validar também se foi registrado no histórico a transação.
+Teste negativo - adicionar o produto no carrinho e finalizar a compra com um cartão inválido. Verificar se o sistema irá impedir a compra, tendo em vista que o cartão é inválido. Também validar com um cartão válido, porém com saldo insuficiente.
+
+Cenário 2: Falha na Comunicação com o Provedor de Pagamento
+Descrição: O sistema tenta processar um pagamento, mas ocorre uma falha na comunicação com o provedor.
+Teste positivo - simular comunicação bem sucedida com o provedor e identificar se irá processar o pagamento corretamente.
+Teste negativo - verificar se aparece uma mensagem clara de indisponibilidade por parte do provedor.
+
+Cenário 3: Solicitação de Reembolso Dentro do Prazo
+Descrição: O usuário solicita um reembolso dentro do prazo permitido (7 dias após a compra).
+Teste positivo - realizar a compra, solicitar reembolso e verificar se o dinheiro será estornado corretamente dentro do prazo estipulado. Verificar também se o status da transação muda para "reembolsado".
+Teste negativo - tentar solicitar vários reembolsos para uma mesma compra, e validar se apenas o primeiro reembolso será permitido.
+
+Cenário 4: Reembolso Fora do Prazo
+Descrição: O usuário tenta solicitar um reembolso após o prazo permitido (mais de 7 dias após a compra).
+Teste positivo - solicitar o reembolso dentro do prazo e verificar se irá ocorrer corretamente.
+Teste negativo - solicitar o reembolso fora do prazo e garantir que será negado, conforme parametrizado
+
+Cenário 5: Registro Completo no Histórico
+Descrição: Todas as transações (pagamentos e reembolsos) devem ser registradas no histórico para auditoria.
+Teste positivo -  realizar uma compra e identificar se irá apresentar no histórico de forma detalhada conforme o esperado.
+Teste positivo - solicitar o reembolso dentro do prazo e identificar se irá apresentar no histórico de forma detalhada conforme o esperado.
+Teste negativo - tentar realizar uma transação inválida e garantir que não irá apresentar no histórico de transações.
+
+Abordagem técnica:
+Podem ser utilizados para testes automatizados UI os frameworks Cypress ou Playwright.
+Para testes de API, podem ser utilizados Postman, JMeter ou SoapUi.
+Também utilizamos o BD MySQL para adicionar ou remover valores para testes
